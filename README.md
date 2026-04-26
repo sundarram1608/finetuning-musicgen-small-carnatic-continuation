@@ -40,7 +40,7 @@ For this project, I used Python in the Cursor IDE for coding. GPU-accelerated ma
 | `images/` | This folder contains the image files used in `Readme.md`. |
 
 
-> **Note:** Folders such as `dataset_wav/`, `dataset_segments_10s/`, `splits/`, `dataset_tokens_10s/`, `checkpoints_lora_musicgen_small/`, and `evaluation_results/` are generated automatically when the notebooks/pipelines are executed — they are intentionally excluded from this repository via `.gitignore`. The raw `RagaDataset/` must be downloaded separately and placed at the project root before running `dataset_relocation_and_conversion.ipynb`.
+> **Note:** Folders such as `dataset_wav/`, `dataset_segments_10s/`, `splits/`, `dataset_tokens_10s/`, `checkpoints_lora_musicgen_small/`, and `evaluation_results/` are generated automatically when the notebooks/pipelines are executed, and they are intentionally excluded from this repository via `.gitignore`. The raw `RagaDataset/` must be downloaded separately and placed at the project root before running `dataset_relocation_and_conversion.ipynb`.
 
 ## How to use this repository? <br>
 
