@@ -1,13 +1,10 @@
-# finetuning-musicgen-small-carnatic-continuation
-This code repository contains the instructions, codes, and results of fine tuning a foundational music generation model (MusicGen) of Meta , using LoRA adapters for Carnatic music continuation. 
-# Finetuning Foundational music model #[MusicGen](https://dl.acm.org/doi/10.5555/3666122.3668188) for Carnatic Music Continuation
-<img width="1708" height="238" alt="image" src="https://github.com/user-attachments/assets/fbc569b4-22e3-4447-9b13-ee546afcda06" />
+# FINE TUNING FOUNDATIONAL MUSIC MODEL #[MusicGen](https://dl.acm.org/doi/10.5555/3666122.3668188) FOR CARNATIC MUSIC CONTIUATION
 
-
-## Course Work "INFO 556 Information Retrieval & Web search"
+## Course Work "INFO 697 Capstone Research Project"
 
 **Project Motivation & Description**<br>
-Carnatic music is one of the oldest and most historic music systems in the world. Raga is the single most crucial melodic framework of this music art form that provides the rules and notes for a Carnatic composition.Learning to identify a song’s raga is a core competency developed during an Indian Carnatic music education. Therefore, Raga recognition is an important step in computational musicology & MIR as far as Indian Carnatic music is considered. <br> <br> This Project aims to leverage MIR techniques to extract and analyze Carnatic audio for 8 melakartha ragas, followed by building a fusion deep learning model (CNN+LSTM) for Raga classification.
+Foundation music models like MusicGen are trained predominantly on Western music, leaving culturally rich traditions such as Carnatic music underrepresented. This project fine-tunes MusicGen on ~10 hours of licensed Carnatic Music from the Indian Art Music Raga Recognition Dataset, using an audio-to-audio continuation framework, bypassing the need for scarce prompt-labeled Carnatic corpora. The goal is to generate stylistically coherent Carnatic continuations from short audio excerpts while preserving melodic and ornamental authenticity. \Evaluation follows a hybrid approach, combining objective boundary distances (mel-spectrogram, chroma, etc…) with human listening studies via a Streamlit interface.
+
 
 ## Dataset:
 The audio dataset is currently not included in this repository due to heavy file size.<br> 
