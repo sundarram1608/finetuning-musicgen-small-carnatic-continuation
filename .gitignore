@@ -216,3 +216,29 @@ __marimo__/
 
 # Streamlit
 .streamlit/secrets.toml
+
+
+# ============================================================
+# Project-specific ignores (MusicGen LoRA Fine-Tuning)
+# ============================================================
+
+# Generated data folders
+dataset_wav/
+dataset_segments_10s/
+dataset_tokens_10s/
+splits/
+examples/
+
+# Training outputs
+checkpoints_lora_musicgen_small/
+evaluation_results/
+
+# Raw dataset (not redistributed)
+RagaDataset/
+
+# Project virtual environment
+musicgen3.9.2/
+
+# OS-specific
+.DS_Store
+Thumbs.db
