@@ -18,17 +18,16 @@ The Sample dataset consists of 5 Carnatic music recordings converted to .wav for
 
 
 ## Methodology:<br>
-An overview of methodology followed for this project is as below.<br>
+An overview of the methodology followed for this project is as follows.<br>
 ![Process Overview](images/project_overview.jpg)
 <br>
 
-
-For this project, I used both Google Collab & Microsoft Visual Studio for coding. Feature extraction was performed in Visual Studio code while EDA & Model Building was performed in Collab. My observation and recommendation is to build the entire project in Collab to leverage the free student compute and other resources it provides for one year. However, this can be built in local IDEs for small datasets for ease of usage and experimentations.<br>
+For this project, I used Python in the Cursor IDE for coding. GPU-accelerated machine learning training and inference on macOS made available through Metal Performance Shaders (mps) of Apple silicon M4 chip was leveraged for finetuning. Listening studies were conducted through a Streamlit interface, and responses were recorded in Google Spreadsheets using the Google Drive API services.<br>
 
 
 ## Details on files & folders<br>
-**This code repository is organised into following key components:**<br>
-- README.md: The current file you are reading giving an overview of the project.<br>
+**This code repository is organised into the following key components:**<br>
+- README.md: The current file you are reading gives an overview of the project.<br>
 - requirements.txt: Contains all the necessary libraries that should be installed in the virtual environment of Microsoft Visual Studio code. <br>
 - helpers.py: Contains all the custom helper functions for the two pipelines Sruthi Identification/ Standardization and Raga Features Extraction. <br>  
 - pipelines.py: Contains the two Custom pipelines mentioned above, organizing all the relevant helper functions in a sequential order within them. <br>  
