@@ -19,7 +19,7 @@ The Sample dataset consists of 5 Carnatic music recordings converted to .wav for
 
 ## Methodology:<br>
 The methodology has been followed in this project.<br>
-![Methodology](methodology.jpg)
+![Methodology](images/project_overview.png)
 <br>
 
 There are 3 major pipelines in this project:<br>
