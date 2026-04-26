@@ -12,13 +12,13 @@ Link to dataset:  <br>
 [Indian Art Music Raga Recognition datasets](https://compmusic.upf.edu/datasets) [1]<br>
 
 Link to the sample dataset: <br>
-[Sample dataset](https://drive.google.com/drive/folders/14oVxOAg2Mu-I-rml4iA3Bmp-ABV8P8Nu?usp=share_link)<br>
+[Sample dataset](https://drive.google.com/drive/folders/1hdnKrlbUHkPReDeCAvJrAnbq7juKEMda?usp=share_link)<br>
 
-The Sample dataset consisits 8 Melakarta Ragas, namely hanumathodi, harikaambhoji, kaamavardhini, kalyani, kharaharapriya, maayamaalavagowlai, shankaraabharanam & shanmugapriya. Minimum of 5 songs from each of these 8 ragas are selected based on their audio size and curated in the sample dataset.
+The Sample dataset consists of 5 Carnatic music recordings converted to .wav format from the actual dataset.
 
 
 ## Methodology:<br>
-Below methoddology has been followed in this project.<br>
+The methodology has been followed in this project.<br>
 ![Methodology](methodology.jpg)
 <br>
 
