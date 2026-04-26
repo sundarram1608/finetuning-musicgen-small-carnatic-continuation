@@ -28,14 +28,7 @@ For this project, I used Python in the Cursor IDE for coding. GPU-accelerated ma
 ## Details on files & folders<br>
 **This code repository is organised into the following key components:**<br>
 - README.md: The current file you are reading gives an overview of the project.<br>
-- requirements.txt: Contains all the necessary libraries that should be installed in the virtual environment of Microsoft Visual Studio code. <br>
-- helpers.py: Contains all the custom helper functions for the two pipelines Sruthi Identification/ Standardization and Raga Features Extraction. <br>  
-- pipelines.py: Contains the two Custom pipelines mentioned above, organizing all the relevant helper functions in a sequential order within them. <br>  
-- feature_extraction_code.ipynb: This is code file that activates the 2 pipelines and generates the pickle file containing the features. <br>
-- [raga_features_merged_df.pkl:](https://drive.google.com/file/d/1Af-9TPFVyLkXVV13bI5zVM3eQXhqURZB/view?usp=share_link) This dataset contains the essential features of Ragas extracted using the pieplines. By default, there is a folder called temp created and this pickle file gets created within it. !!! This is going to be a huge file!!! 
-- eda_code.ipynb: This includes the codes used for the Exploratory Data Analysis and visualizations of Raga Features.
-- model_building.ipynb: This includes the codes used for building the fusion model, model training/ evaluation  and embedding space visualizations.<br>
-    ![Fusion Model](fusion_model.jpg)<br>
+
 - Reports: This section will be updated post completion of this project
 
 ## How to use this repository? <br>
