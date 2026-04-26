@@ -27,50 +27,47 @@ For this project, I used Python in the Cursor IDE for coding. GPU-accelerated ma
 
 ## Details on files & folders<br>
 **This code repository is organised into the following key components:**<br>
-- README.md: The current file you are reading gives an overview of the project.<br>
-- initial_environment_setup.md: This file contains detailed 
-
-- Reports: This section will be updated post completion of this project
-
-| File | Description |
-|------|-------------|
+| File / Folder | Description |
+|---------------|-------------|
+| `README.md` | The current file you are reading; gives an overview of the project. |
 | `initial_environment_setup.md` | Step-by-step guide to fork/patch AudioCraft for Apple Silicon (disabling xFormers) and set up the Python 3.9 virtual environment with all MusicGen dependencies. |
 | `dataset_relocation_and_conversion.ipynb` | Converts the raw RagaDataset audio files into 32 kHz `.wav` format under `dataset_wav/` and reports total duration statistics. |
 | `classes.py` | Defines the custom `CachedRVQDataset` (loads cached EnCodec RVQ tokens from CSV) and `LoRALinear` (low-rank adapter that wraps and freezes a base `nn.Linear` layer). |
 | `helpers.py` | Central utility module containing all helper functions — device/model loading, audio cleaning & segmentation, train/val/test splitting, EnCodec token caching, LoRA injection/training/checkpointing, and boundary-continuation evaluation metrics (Mel, MFCC, Chroma, Onset). |
 | `pipelines.py` | High-level orchestration layer that chains helper functions into runnable end-to-end stages (reproducibility check, EnCodec confirmation, dataset prep, tokenization, baseline eval, LoRA fine-tuning, post-finetuning eval, quantitative eval). |
-| `fine-tuning.ipynb` | Main execution notebook that runs the full MusicGen-Small LoRA fine-tuning pipeline for Carnatic music continuation by sequentially invoking the stage functions from `pipelines.py` (Steps 0–9). |
+| `fine-tuning.ipynb` | Main execution notebook that runs the full MusicGen-Small LoRA fine-tuning pipeline for Carnatic music continuation by sequentially invoking the stage functions from `pipelines.py` |
+| `Reports/` | This section will be updated post completion of this project. |
+| `images/` | This folder contains the image files used in `Readme.md`. |
+
+
+> **Note:** Folders such as `dataset_wav/`, `dataset_segments_10s/`, `splits/`, `dataset_tokens_10s/`, `checkpoints_lora_musicgen_small/`, and `evaluation_results/` are generated automatically when the notebooks/pipelines are executed — they are intentionally excluded from this repository via `.gitignore`. The raw `RagaDataset/` must be downloaded separately and placed at the project root before running `dataset_relocation_and_conversion.ipynb`.
 
 ## How to use this repository? <br>
 
-In the following section, I have given the details as per the way I have organized and experimented with my codes. <br>
-Feature extraction was performed in Visual Studio code while EDA & Model Building was performed in Collab.
-Follow the steps below, to experiment with my code:<br>
-- Fork the repository <br>
-- Run the following commands in your terminal.<br>
-- Clone your forked repo to your local <br>
+
+Follow the steps below to reproduce the MusicGen-Small LoRA fine-tuning pipeline for Carnatic music continuation.
+
+### 1. Clone the Repository
+
 ```bash
-git clone https://github.com/sundarram1608/carnatic_music_raga_identification_mir.git
+git clone https://github.com/<your-username>/<your-repo-name>.git
+cd <your-repo-name>
 ```
-- Download the [Sample dataset](https://drive.google.com/drive/folders/14oVxOAg2Mu-I-rml4iA3Bmp-ABV8P8Nu?usp=sharing) provided (dataset folder), to the same folder as the other code files of this repo.
-- Folder hierarchy as mentioned above is important for codes to execute seamlessly.
-- Open terminal and follow the below CLI prompts one by one to create a virtual environment<br>
-```bash
-cd “path to directory“
-```
-```bash
-python3 -m venv myenv
-```
-```bash
-source myenv/bin/activate
-``` 
-```bash
-pip install -r requirements.txt
-```
-- This creates the virtual environment necessary to run the sruthi identification/ standardization & raga feature extraction pipeline in Visual Studio code.
-- If there are compute issues, you could upload the cloned repository to your Google Drive and open the ipynb file with Collab.
-- In collab, select the GPU compute resource (for e.g. L4) and then mount your drive. From then, you are free to run and experiment with the code.
-- All the .py and .ipynb files have guided comments and are self explanatory.
+
+### 2. Set Up the Environment
+
+Follow the detailed instructions in [`initial_environment_setup.md`](./initial_environment_setup.md) to:
+- Fork and patch the AudioCraft repository for Apple Silicon compatibility (disabling xFormers).
+- Install Python 3.9 via Homebrew.
+- Create and activate the `musicgen3.9.2` virtual environment.
+- Install all required dependencies (AudioCraft, torchcodec, ffmpeg, ipykernel, etc.).
+- Register the Jupyter kernel for use in VS Code.
+
+### 3. Download the Raw Dataset
+
+Place the raw `RagaDataset/` folder at the project root. This folder is **not** included in the repository and must be sourced separately.
+
+The expected structure is:
 
 ## Credits:
 I thank my mentor Dr. Xiao Hu and all the references and citations I have mentioned below, to enable me with the structured thought process to approach this problem.
