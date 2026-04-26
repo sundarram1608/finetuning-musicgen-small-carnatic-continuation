@@ -43,15 +43,13 @@ For this project, I used Python in the Cursor IDE for coding. GPU-accelerated ma
 > **Note:** Folders such as `dataset_wav/`, `dataset_segments_10s/`, `splits/`, `dataset_tokens_10s/`, `checkpoints_lora_musicgen_small/`, and `evaluation_results/` are generated automatically when the notebooks/pipelines are executed, and they are intentionally excluded from this repository via `.gitignore`. The raw `RagaDataset/` must be downloaded separately and placed at the project root before running `dataset_relocation_and_conversion.ipynb`.
 
 ## How to use this repository? <br>
-
-
 Follow the steps below to reproduce the MusicGen-Small LoRA fine-tuning pipeline for Carnatic music continuation.
 
 ### 1. Clone the Repository
 
 ```bash
-git clone https://github.com/<your-username>/<your-repo-name>.git
-cd <your-repo-name>
+git clone https://github.com/sundarram1608/finetuning-musicgen-small-carnatic-continuation.git
+cd finetuning-musicgen-small-carnatic-continuation
 ```
 
 ### 2. Set Up the Environment
