@@ -18,13 +18,10 @@ The Sample dataset consists of 5 Carnatic music recordings converted to .wav for
 
 
 ## Methodology:<br>
-The methodology has been followed in this project.<br>
-![Methodology](images/project_overview.png)
+An overview of methodology followed for this project is as below.<br>
+![Process Overview](images/project_overview.jpg)
 <br>
 
-There are 3 major pipelines in this project:<br>
-![Architecture](architecture.jpg)
-<br>
 
 For this project, I used both Google Collab & Microsoft Visual Studio for coding. Feature extraction was performed in Visual Studio code while EDA & Model Building was performed in Collab. My observation and recommendation is to build the entire project in Collab to leverage the free student compute and other resources it provides for one year. However, this can be built in local IDEs for small datasets for ease of usage and experimentations.<br>
 
