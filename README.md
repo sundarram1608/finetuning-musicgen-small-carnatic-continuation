@@ -9,7 +9,7 @@ Foundation music models like MusicGen are trained predominantly on Western music
 ## Dataset:
 The audio dataset is currently not included in this repository due to its heavy file size.<br> 
 Link to dataset:  <br>
-[Indian Art Music Raga Recognition datasets](https://compmusic.upf.edu/datasets) [1]<br>
+[Indian Art Music Raga Recognition datasets](https://compmusic.upf.edu/datasets)<br>
 
 Link to the sample dataset: <br>
 [Sample dataset](https://drive.google.com/drive/folders/1hdnKrlbUHkPReDeCAvJrAnbq7juKEMda?usp=share_link)<br>
@@ -55,28 +55,59 @@ cd finetuning-musicgen-small-carnatic-continuation
 ### 2. Set Up the Environment
 
 Follow the detailed instructions in [`initial_environment_setup.md`](./initial_environment_setup.md) to:
-- Fork and patch the AudioCraft repository for Apple Silicon compatibility (disabling xFormers).
+- Fork and patch the AudioCraft repository for Apple Silicon compatibility.
 - Install Python 3.9 via Homebrew.
 - Create and activate the `musicgen3.9.2` virtual environment.
 - Install all required dependencies (AudioCraft, torchcodec, ffmpeg, ipykernel, etc.).
-- Register the Jupyter kernel for use in VS Code.
+- Register the Jupyter kernel for use in Cursor/ VS Code.
 
 ### 3. Download the Raw Dataset
 
-Place the raw `RagaDataset/` folder at the project root. This folder is **not** included in the repository and must be sourced separately.
+Place the raw `RagaDataset/` folder at the project root. This folder is **not** included in the repository and must be sourced by obtaining access separately from [Indian Art Music Raga Recognition datasets](https://compmusic.upf.edu/datasets).
 
-The expected structure is:
+### 4. Convert the Raw Dataset to WAV
+
+Open and run [`dataset_relocation_and_conversion.ipynb`](./dataset_relocation_and_conversion.ipynb) end-to-end. This will:
+- Convert the raw audio files into 32 kHz `.wav` format.
+- Save them under a newly created `dataset_wav/` folder.
+
+### 5. Run the Fine-Tuning Pipeline
+
+Open [`fine-tuning.ipynb`](./fine-tuning.ipynb) and select the `Python (venv_musicgen3.9.2)` kernel. Execute the cells sequentially, as each section corresponds to a stage in the pipeline:
+
+> **Note:** Step 0 can be ignored as it's just a starter to ensure we can access the baseline MusicGen models
+
+| Step | Stage | Description |
+|------|-------|-------------|
+| 0 | Hugging Face Examples | Sanity-check text-to-music generation using the HF MusicGen wrapper. |
+| 1 | Reproducibility Check | Verify installed package versions and load MusicGen-Small. |
+| 2 | Unconditional Generation & EnCodec Confirmation | Confirm local inference and EnCodec encode/decode work correctly. |
+| 3 | Dataset Loading, Cleaning & Segmentation | Resample, trim silence, and split audio into 10-second segments. |
+| 4 | Train / Val / Test Split | Generate split CSVs under `splits/`. |
+| 5 | Tokenizer Loading & Token Caching | Encode segments into RVQ tokens and cache them under `dataset_tokens_10s/`. |
+| 6 | Baseline Evaluation | Generate baseline continuations from pretrained MusicGen-Small. |
+| 7 | LoRA Fine-Tuning | Train LoRA adapters on cached RVQ tokens; checkpoints saved under `checkpoints_lora_musicgen_small/`. |
+| 8 | Post Fine-Tuning Evaluation | Generate continuations from the fine-tuned model and compare against baseline. |
+| 9 | Quantitative Evaluation | Compute CE loss, perplexity, and boundary-continuation metrics (Mel, MFCC, Chroma, Onset). |
+
+### 6. Review the Outputs
+
+After execution, the following folders will be populated automatically:
+- `dataset_wav/`, `dataset_segments_10s/`, `splits/`, `dataset_tokens_10s/` — processed data.
+- `checkpoints_lora_musicgen_small/` — LoRA checkpoints and training history.
+- `evaluation_results/` — generated audio continuations and quantitative metric CSVs.
+
+### Notes
+- The pipeline is built and tested on **macOS with Apple Silicon (M1/M2)**. Other platforms may work, but have not been verified.
+- All stages are modular. So, you can re-run individual cells in `fine-tuning.ipynb` without restarting the entire pipeline, as long as upstream artifacts already exist.
+- For debugging, set `USE_DEBUG_SUBSET = True` inside `set_lora_debug_configuration()` in `helpers.py` to train on a small subset.
+
+### 7. Qualitative Evaluation (Listening Study)
+
+In addition to the quantitative metrics computed, a qualitative evaluation is carried out through a human listening study. Participants compare baseline and fine-tuned continuations side-by-side and rate them on perceptual musicality, continuity, and authenticity.
+The study is hosted via a Streamlit web interface, available here: [Listening Study Link](https://capstone-user-evaluation-survey.streamlit.app)
+
+Results from this study will be summarized in the `Reports/` folder upon project completion.
 
 ## Credits:
-I thank my mentor Dr. Xiao Hu and all the references and citations I have mentioned below, to enable me with the structured thought process to approach this problem.
-The codes in this repository, sample datasets and structuring solely belongs to the author and mentor.
-
-## References:<br>
-[1] Serrà, J., Ganguli, K. K., Sentürk, S., Serra, X., & Gulati, S. (2016). Indian Art Music Raga Recognition Dataset (audio) (1.0) [Data set]. Zenodo. https://doi.org/10.5281/zenodo.7278511<br><br>
-[2] Sridhar, Rajeswari & Geetha, T.V. (2009). Raga Identification of Carnatic music for music Information Retrieval. SHORT PAPER International Journal of Recent Trends in Engineering. 1. [Research Gate](https://www.researchgate.net/publication/228960849_Raga_Identification_of_Carnatic_music_for_music_Information_Retrieval)<br><br>
-[3] Shah, Devansh & Jagtap, Nikhil & Talekar, Prathmesh & Gawande, Kiran. (2021). Raga Recognition in Indian Classical Music Using Deep Learning. 10.1007/978-3-030-72914-1_17. [Research Gate](https://www.researchgate.net/publication/350553712_Raga_Recognition_in_Indian_Classical_Music_Using_Deep_Learning)<br><br>
-[4] Ravikoti, Sridhar. (2020, September). Identifying Ragas in Carnatic Music with Machine Learning. [LinkedIn](https://www.linkedin.com/pulse/identifying-ragas-carnatic-music-machine-learning-sridhar-ravikoti/)<br><br>
-[5] Great Learning Snippets. (2020, July). Deep Learning Based Raga Classification in Carnatic Music. [Medium](https://medium.com/@blogsupport/deep-learning-based-raga-classification-in-carnatic-music-e499018ea1b7)<br><br>
-[6] Srinivasan, Shriya. (2021, August). Carnatic Raga Recognition. [Medium](https://medium.com/@shriya_32059/carnatic-raga-recognition-28ba52ec9563)<br><br>
-[7] Divan, Shreyas. (2021, November). Raga identification using ML and DL. [Medium](https://medium.com/@shreyas.divan/raga-identification-using-ml-and-dl-a95b51f47044)
-
+I thank my mentor, Dr. Xiao Hu, for guidance and Meta for open-sourcing its MusicGen model.
