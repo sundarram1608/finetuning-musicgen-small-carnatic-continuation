@@ -28,8 +28,18 @@ For this project, I used Python in the Cursor IDE for coding. GPU-accelerated ma
 ## Details on files & folders<br>
 **This code repository is organised into the following key components:**<br>
 - README.md: The current file you are reading gives an overview of the project.<br>
+- initial_environment_setup.md: This file contains detailed 
 
 - Reports: This section will be updated post completion of this project
+
+| File | Description |
+|------|-------------|
+| `initial_environment_setup.md` | Step-by-step guide to fork/patch AudioCraft for Apple Silicon (disabling xFormers) and set up the Python 3.9 virtual environment with all MusicGen dependencies. |
+| `dataset_relocation_and_conversion.ipynb` | Converts the raw RagaDataset audio files into 32 kHz `.wav` format under `dataset_wav/` and reports total duration statistics. |
+| `classes.py` | Defines the custom `CachedRVQDataset` (loads cached EnCodec RVQ tokens from CSV) and `LoRALinear` (low-rank adapter that wraps and freezes a base `nn.Linear` layer). |
+| `helpers.py` | Central utility module containing all helper functions — device/model loading, audio cleaning & segmentation, train/val/test splitting, EnCodec token caching, LoRA injection/training/checkpointing, and boundary-continuation evaluation metrics (Mel, MFCC, Chroma, Onset). |
+| `pipelines.py` | High-level orchestration layer that chains helper functions into runnable end-to-end stages (reproducibility check, EnCodec confirmation, dataset prep, tokenization, baseline eval, LoRA fine-tuning, post-finetuning eval, quantitative eval). |
+| `fine-tuning.ipynb` | Main execution notebook that runs the full MusicGen-Small LoRA fine-tuning pipeline for Carnatic music continuation by sequentially invoking the stage functions from `pipelines.py` (Steps 0–9). |
 
 ## How to use this repository? <br>
 
