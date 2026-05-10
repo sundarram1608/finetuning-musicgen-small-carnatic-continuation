@@ -3,7 +3,7 @@
 ## Capstone Research Study
 
 **Research Motivation & Description**<br>
-Foundation music models like MusicGen are trained predominantly on Western music, leaving culturally rich traditions such as Carnatic music underrepresented. This project leverages LoRA to fine-tune MusicGen by Meta on ~10 hours of licensed Carnatic Music from the Indian Art Music Raga Recognition Dataset, using an audio-to-audio continuation framework, bypassing the need for scarce prompt-labeled Carnatic corpora. The goal is to generate stylistically coherent Carnatic continuations from short audio excerpts while preserving melodic and ornamental authenticity. Evaluation follows a hybrid approach, combining objective boundary distances (mel-spectrogram, chroma, MFCC, etc.) with human listening studies via a [Streamlit interface](https://capstone-user-evaluation-survey.streamlit.app).
+Foundation music models like MusicGen are trained predominantly on Western music, leaving culturally rich traditions such as Carnatic music underrepresented. This study leverages LoRA to fine-tune MusicGen by Meta on ~10 hours of licensed Carnatic Music from the Indian Art Music Raga Recognition Dataset, using an audio-to-audio continuation framework, bypassing the need for scarce prompt-labeled Carnatic corpora. The goal is to generate stylistically coherent Carnatic continuations from short audio excerpts while preserving melodic and ornamental authenticity. Evaluation follows a hybrid approach, combining objective boundary distances (mel-spectrogram, chroma, MFCC, etc.) with human listening studies via a [Streamlit interface](https://capstone-user-evaluation-survey.streamlit.app).
 
 
 ## Dataset:
@@ -18,29 +18,29 @@ The Sample dataset consists of 5 Carnatic music recordings converted to .wav for
 
 
 ## Methodology:<br>
-An overview of the methodology followed for this project is as follows.<br>
-![Process Overview](images/project_overview.jpg)
+An overview of the methodology followed for this study is as follows.<br>
+![Process Overview](images/overview.jpg)
 <br>
 
-For this project, I used Python in the Cursor IDE for coding. GPU-accelerated machine learning training and inference on macOS made available through Metal Performance Shaders (mps) of Apple silicon M4 chip was leveraged for finetuning. Listening studies were conducted through a Streamlit interface, and responses were recorded in Google Spreadsheets using the Google Drive API services.<br>
+For this study, I used Python in the Cursor IDE for coding. GPU-accelerated machine learning training and inference on macOS made available through Metal Performance Shaders (mps) of Apple silicon M4 chip was leveraged for finetuning. Listening studies were conducted through a Streamlit interface, and responses were recorded in Google Spreadsheets using the Google Drive API services.<br>
 
 
 ## Details on files & folders<br>
 **This code repository is organised into the following key components:**<br>
 | File / Folder | Description |
 |---------------|-------------|
-| `README.md` | The current file you are reading; gives an overview of the project. |
+| `README.md` | The current file you are reading; gives an overview of the study. |
 | `initial_environment_setup.md` | Step-by-step guide to fork AudioCraft for Apple Silicon (disabling xFormers) and set up the Python 3.9 virtual environment with all MusicGen dependencies. |
 | `dataset_relocation_and_conversion.ipynb` | Converts the raw RagaDataset audio files into 32 kHz `.wav` format under `dataset_wav/` and reports total duration statistics. |
 | `classes.py` | Defines the custom `CachedRVQDataset` (loads cached EnCodec RVQ tokens from CSV) and `LoRALinear` (low-rank adapter that wraps and freezes a base `nn.Linear` layer). |
 | `helpers.py` | Central utility module containing all helper functions — device/model loading, audio cleaning & segmentation, train/val/test splitting, EnCodec token caching, LoRA injection/training/checkpointing, and boundary-continuation evaluation metrics (Mel, MFCC, Chroma, Onset). |
 | `pipelines.py` | High-level orchestration layer that chains helper functions into runnable end-to-end stages (reproducibility check, EnCodec confirmation, dataset prep, tokenization, baseline eval, LoRA fine-tuning, post-finetuning eval, quantitative eval). |
 | `fine-tuning.ipynb` | Main execution notebook that runs the full MusicGen-Small LoRA fine-tuning pipeline for Carnatic music continuation by sequentially invoking the stage functions from `pipelines.py` |
-| `Reports/` | This section will be updated post completion of this project. |
+| `Report/` | This section contains the poster and final research report covering detailed discussion on the process, methodology and results. |
 | `images/` | This folder contains the image files used in `Readme.md`. |
 
 
-> **Note:** Folders such as `dataset_wav/`, `dataset_segments_10s/`, `splits/`, `dataset_tokens_10s/`, `checkpoints_lora_musicgen_small/`, and `evaluation_results/` are generated automatically when the notebooks/pipelines are executed, and they are intentionally excluded from this repository via `.gitignore`. The raw `RagaDataset/` must be downloaded separately and placed at the project root before running `dataset_relocation_and_conversion.ipynb`.
+> **Note:** Folders such as `dataset_wav/`, `dataset_segments_10s/`, `splits/`, `dataset_tokens_10s/`, `checkpoints_lora_musicgen_small/`, and `evaluation_results/` are generated automatically when the notebooks/pipelines are executed, and they are intentionally excluded from this repository via `.gitignore`. The raw `RagaDataset/` must be downloaded separately and placed at the root before running `dataset_relocation_and_conversion.ipynb`.
 
 ## How to use this repository? <br>
 Follow the steps below to reproduce the MusicGen-Small LoRA fine-tuning pipeline for Carnatic music continuation.
@@ -63,7 +63,7 @@ Follow the detailed instructions in [`initial_environment_setup.md`](./initial_e
 
 ### 3. Download the Raw Dataset
 
-Place the raw `RagaDataset/` folder at the project root. This folder is **not** included in the repository and must be sourced by obtaining access separately from [Indian Art Music Raga Recognition datasets](https://compmusic.upf.edu/datasets).
+Place the raw `RagaDataset/` folder at the root. This folder is **not** included in the repository and must be sourced by obtaining access separately from [Indian Art Music Raga Recognition datasets](https://compmusic.upf.edu/datasets).
 
 ### 4. Convert the Raw Dataset to WAV
 
@@ -107,7 +107,7 @@ After execution, the following folders will be populated automatically:
 In addition to the quantitative metrics computed, a qualitative evaluation is carried out through a human listening study. Participants compare baseline and fine-tuned continuations side-by-side and rate them on perceptual musicality, continuity, and authenticity.
 The study is hosted via a Streamlit web interface, available here: [Listening Study Link](https://capstone-user-evaluation-survey.streamlit.app)
 
-Results from this study will be summarized in the `Reports/` folder upon project completion.
+Results from this study will be summarized in the `Reports/` folder upon completion.
 
 ## Credits:
 I thank my mentor, Dr. Xiao Hu, for guidance and Meta for open-sourcing its MusicGen model.
