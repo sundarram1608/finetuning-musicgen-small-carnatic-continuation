@@ -242,3 +242,4 @@ musicgen3.9.2/
 # OS-specific
 .DS_Store
 Thumbs.db
+*.pptx
