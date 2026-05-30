@@ -110,4 +110,4 @@ The study is hosted via a Streamlit web interface, available here: [Listening St
 Results from this study will be summarized in the `Reports/` folder upon completion.
 
 ## Credits:
-I thank my mentor, Dr. Xiao Hu, for guidance and Meta for open-sourcing its MusicGen model.
+I thank my mentor, Dr. Xiao Hu, for guidance, Meta for open-sourcing its MusicGen model, and the broader MIR community for making datasets and related research work accessible.
